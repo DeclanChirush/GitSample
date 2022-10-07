@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SMI</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Choices.js-->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='vendor/choices.js/public/assets/styles/choices.min.css') }}">
+    <!-- Google fonts - Muli-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.violet.css') }}" id="theme-stylesheet">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+            integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css"
+          integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous"/>
+
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg py-3 bg-dash-dark-2 border-bottom border-dash-dark-1 z-index-10">
+
+        <div class="container-fluid d-flex align-items-center justify-content-between py-1">
+            <div class="navbar-header d-flex align-items-center"><a class="navbar-brand text-uppercase text-reset"
+                                                                    href="/home">
+                <div class="brand-text brand-big"><strong class="text-primary">Stock
+                    Market</strong><strong>Investment</strong></div>
+                <div class="brand-text brand-sm"><strong class="text-primary">SM</strong><strong>T</strong></div>
+            </a>
+                <button class="sidebar-toggle">
+                    <svg class="svg-icon svg-icon-sm svg-icon-heavy transform-none">
+                        <use xlink:href="#arrow-left-1"></use>
+                    </svg>
+                </button>
+            </div>
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item logout px-lg-2"><a class="nav-link text-sm text-reset px-1 px-lg-0"
+                                                               id="logout" href="/"> <span
+                        class="d-none d-sm-inline-block">Logout </span>
+                    <svg class="svg-icon svg-icon-xs svg-icon-heavy">
+                        <use xlink:href="#disable-1"></use>
+                    </svg>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="d-flex align-items-stretch">
+    <!-- Sidebar Navigation-->
+    <nav id="sidebar">
+        <!-- Sidebar Header-->
+        <div class="sidebar-header d-flex align-items-center p-4">
+            <div class="ms-3 title">
+                <h1 class="h5 mb-1">{{username}}</h1>
+                <p class="text-sm text-gray-700 mb-0 lh-1">{{user_type}}</p>
+            </div>
+        </div>
+        <span class="text-uppercase text-gray-600 text-xs mx-3 px-2 heading mb-2">Menu</span>
+        <ul class="list-unstyled">
+            <li class="sidebar-item active"><a class="sidebar-link" href="/home">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                    <use xlink:href="#real-estate-1"></use>
+                </svg>
+                <span>Impact of Company Financial</span></a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="/inflation">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                    <use xlink:href="#portfolio-grid-1"></use>
+                </svg>
+                <span>Impact of Inflation </span></a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="/news">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                    <use xlink:href="#sales-up-1"></use>
+                </svg>
+                <span>Impact of News </span></a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="/stock_behavior">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                    <use xlink:href="#survey-1"></use>
+                </svg>
+                <span>Impact of Stock Market Behavior </span></a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="/all">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                    <use xlink:href="#chart-1"></use>
+                </svg>
+                <span>All </span></a></li>
+
+        </ul>
+
+    </nav>
+    <div class="page-content">
+        <!-- Page Header-->
+        <div class="bg-dash-dark-2 py-4">
+            <div class="container-fluid">
+                <h2 class="h5 mb-0">Dashboard</h2>
+            </div>
+        </div>
+        <br>
+
+
+        <section class="pt-0">
+            <div class="container-fluid">
+                <div class="row gy-4">
+
+                    <!-- Horizontal Form-->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="h4 mb-0">Search Box</h3>
+                            </div>
+                            <div class="card-body pt-0">
+                                <form class="form-horizontal" action="/home", method="post">
+                                    <div class="row gy-2 mb-4">
+                                        <label class="col-sm-3 form-label" for="inputHorizontalElOne">Company
+                                            Name</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control", name="company_name">
+                                                <option>ASIA_ASSET_FINANCE_PLC</option>
+                                                <option>dd</option>
+                                                <option>ss</option>
+                                                <option>hh</option>
+                                                <option>ooo</option>
+                                                <option>pppp</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row gy-2 mb-4">
+                                        <label class="col-sm-3 form-label" for="inputHorizontalElTwo">No of
+                                            Months</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" name="no_of_months" value="6" type="number">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-9 ms-auto">
+                                            <input class="btn btn-primary" type="submit" value="Forecast">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="pt-0">
+            <div class="container-fluid">
+                <div class="row gy-4">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body"><strong>{{company_name}}</strong>
+                                <canvas id="lineChartCustom1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="tables">
+            <div class="container-fluid">
+                <div class="row gy-4">
+
+                    <div class="col-lg-12">
+                        <div class="card mb-0">
+                            <div class="card-body"><strong>{{company_name}}</strong>
+                                <div class="table-responsive">
+                                    <table class="table mb-0 table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Index</th>
+                                            <th>Value</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for row in data %}
+                                        <tr>
+                                            <th>{{row[0]}}</th>
+                                            <th>{{row[1]}}</th>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Footer-->
+        <footer class="position-absolute bottom-0 bg-dash-dark-2 text-white text-center py-3 w-100 text-xs"
+                id="footer">
+            <div class="container-fluid text-center">
+                <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                <p class="mb-0 text-dash-gray">2022 &copy; SMI.</p>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="{{ url_for(
+'static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+<script src="{{ url_for(
+'static', filename='vendor/just-validate/js/just-validate.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/choices.js/public/assets/scripts/choices.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/charts-home.js') }}"></script>
+<script src="{{ url_for('static', filename='js/front.js') }}"></script>
+<script>
+      const LINECHARTEXMPLE = document.getElementById("lineChartCustom1");
+
+      // ------------------------------------------------------- //
+      //   Inject SVG Sprite -
+      //   see more here
+      //   https://css-tricks.com/ajaxing-svg-sprite/
+      // ------------------------------------------------------ //
+      function injectSvgSprite(path) {
+
+          var ajax = new XMLHttpRequest();
+          ajax.open("GET", path, true);
+          ajax.send();
+          ajax.onload = function(e) {
+          var div = document.createElement("div");
+          div.className = 'd-none';
+          div.innerHTML = ajax.responseText;
+          document.body.insertBefore(div, document.body.childNodes[0]);
+          }
+      }
+      // this is set to BootstrapTemple website as you cannot
+      // inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+      // while using file:// protocol
+      // pls don't forget to change to your domain :)
+      injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+
+
+      var lineChartExample = new Chart(LINECHARTEXMPLE, {
+        type: "line",
+        options: {
+            legend: { labels: { fontColor: "#777", fontSize: 12 } },
+            scales: {
+                xAxes: [
+                    {
+                        display: true,
+                        gridLines: {
+                            color: "transparent",
+                        },
+                    },
+                ],
+                yAxes: [
+                    {
+                        ticks: {
+                            max: 20,
+                            min: 0,
+                        },
+                        display: true,
+                        gridLines: {
+                            color: "transparent",
+                        },
+                    },
+                ],
+            },
+        },
+        data: {
+            labels: [{{x_data}}],
+            datasets: [
+                {
+                    label: "Earnings per share",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "rgba(134, 77, 217, 0.88)",
+                    borderColor: "rgba(134, 77, 217, 088)",
+                    borderCapStyle: "butt",
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: "miter",
+                    borderWidth: 1,
+                    pointBorderColor: "rgba(134, 77, 217, 0.88)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(134, 77, 217, 0.88)",
+                    pointHoverBorderColor: "rgba(134, 77, 217, 0.88)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [{{y_earnings_per_share}}],
+                    spanGaps: false,
+                },
+                {
+                    label: "Net Profit Margin",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "rgba(98, 98, 98, 0.5)",
+                    borderColor: "rgba(98, 98, 98, 0.5)",
+                    borderCapStyle: "butt",
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: "miter",
+                    borderWidth: 1,
+                    pointBorderColor: "rgba(98, 98, 98, 0.5)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(98, 98, 98, 0.5)",
+                    pointHoverBorderColor: "rgba(98, 98, 98, 0.5)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [{{y_data_net_profit_margin}}],
+                    spanGaps: false,
+                },
+            ],
+        },
+    });
+
+
+
+    $(document).ready(function () {
+      $('select').selectize({
+          sortField: 'text'
+      });
+    });
+
+
+
+</script>
+<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</body>
+</html>
